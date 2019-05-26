@@ -178,88 +178,92 @@ body {
     color: rgba(8,28,36,.5)
 }
 
-#listadepelis1 {
+.all:hover {
+    cursor: pointer;
+}
+
+#listadepelispopular {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-#listadepelis1 .movie {
+#listadepelispopular .movie {
     flex: 1;
     flex-basis: 20%;
 }
   
-#listadepelis1 img {
+#listadepelispopular img {
     width: 170px;
     height: auto;
 }
   
-#listadepelis1 p {
+#listadepelispopular p {
     color: rgba(8, 28, 36, 0.5);
     width: 170px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
   
-#listadepelis2 {
+#listadepelistop_rated {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-#listadepelis2 .movie {
+#listadepelistop_rated .movie {
     flex: 1;
     flex-basis: 20%;
 }
   
-#listadepelis2 img {
+#listadepelistop_rated img {
     width: 170px;
     height: auto;
 }
   
-#listadepelis2 p {
+#listadepelistop_rated p {
     color: rgba(8, 28, 36, 0.5);
     width: 170px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-#listadepelis3 {
+#listadepelisupcoming {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-#listadepelis3 .movie {
+#listadepelisupcoming .movie {
     flex: 1;
     flex-basis: 20%;
 }
   
-#listadepelis3 img {
+#listadepelisupcoming img {
     width: 170px;
     height: auto;
 }
   
-#listadepelis3 p {
+#listadepelisupcoming p {
     color: rgba(8, 28, 36, 0.5);
     width: 170px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-#listadepelis4 {
+#listadepelisnow_playing {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-#listadepelis4 .movie {
+#listadepelisnow_playing .movie {
     flex: 1;
     flex-basis: 20%;
 }
   
-#listadepelis4 img {
+#listadepelisnow_playing img {
     width: 170px;
     height: auto;
 }
   
-#listadepelis4 p {
+#listadepelisnow_playing p {
     color: rgba(8, 28, 36, 0.5);
     width: 170px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -285,5 +289,17 @@ body {
 }
 
 .movie:hover {
+    cursor: pointer;
+}
+
+.boton {
+    width: 100px;
+    height: 40px;
+    background: black;
+    color: white;
+    justify-self: center;
+}
+
+.boton:hover {
     cursor: pointer;
 }
