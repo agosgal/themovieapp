@@ -3,9 +3,8 @@
 const logo = document.querySelector("#header .logo");
 
 logo.onclick = function (event) {
-    location.reload(true);
+ location.reload(true);
 }
-
 
 // Ni bien abro el sitio
 
@@ -15,12 +14,12 @@ const traerpeli = (categoria) => {
         const divboton = document.querySelector("button");
         divboton.classList.add("hide");
     }
-
+    
     // Traigo las 5 populares
-
+    
     const prom = fetch("https://api.themoviedb.org/3/movie/" + categoria + "?api_key=d970e377bc07fda41fabc4c1bc412609");
     prom.then(res => res.json())
-        .then(movie => {
+        .then(movie => {    
             if (movie) {
             }
             for (let i = 0; i < 5; i++) {
@@ -34,14 +33,39 @@ const traerpeli = (categoria) => {
 
                 const imagen = document.createElement("img");
                 imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
-
+                
                 div.appendChild(imagen)
                 div.appendChild(titulo)
 
                 const lista = document.getElementById("listadepelis" + categoria)
 
-                // Agregamos el div al listado 
+                // Agrego el div al listado 
                 lista.appendChild(div)
+                
+                // Activo modal
+                const unapeli = div;
+                const modal = document.getElementById("myModal");
+                var span = document.querySelector(".modal .close");
+
+                unapeli.onclick = function () {
+                    modal.classList.add("active")
+                }
+
+                span.onclick = function() {
+                    console.log("chau")
+                    modal.classList.remove("active")
+                  }
+
+                // Reemplazo info de modal:
+
+                const poster = document.querySelector(".modal-box .contenido .movie .header1 .wrap-header .poster img");
+                const titulo1 = document.querySelector(".modal-box .contenido .movie .header1 .wrap-header .titulo1 h1");  
+                console.log(titulo1)
+                console.log(titulo1.innerHTML)
+
+                poster.src = "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path;
+                titulo1.innerHTML = movie.results[i].title;
+                
             }
         })
 }
@@ -89,28 +113,43 @@ const traigopeli = (categoria) => {
     const listadepelis = document.getElementById("listadepelistop_rated");
     const prom = fetch("https://api.themoviedb.org/3/movie/" + categoria + "?api_key=d970e377bc07fda41fabc4c1bc412609&page=" + vuelta);
     prom.then(res => res.json())
-        .then(movie => {
+        .then(movie => {    
             if (movie) {
                 listadepelis.innerHTML = "";
-                for (let i = 0; i < movie.results.length; i++) {
-                    // Creamos un div, le añadimos el nombre y la imagen 
-                    const div = document.createElement("div")
-                    div.classList.add("movie")
+            for (let i = 0; i < movie.results.length ; i++) {
+                // Creamos un div, le añadimos el nombre y la imagen 
+                const div = document.createElement("div")
+                div.classList.add("movie")
 
-                    const titulo = document.createElement("p")
-                    titulo.classList.add("titulo")
-                    titulo.textContent = movie.results[i].title
+                const titulo = document.createElement("p")
+                titulo.classList.add("titulo")
+                titulo.textContent = movie.results[i].title
 
-                    const imagen = document.createElement("img");
-                    imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
+                const imagen = document.createElement("img");
+                imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
 
-                    div.appendChild(imagen)
-                    div.appendChild(titulo);
+                div.appendChild(imagen)
+                div.appendChild(titulo);
+                
+
+                
+                // Agregamos el div al listado 
+                listadepelis.appendChild(div);
 
 
+                // Activo modal
+                const unapeli = div;
+                const modal = document.getElementById("myModal");
+                var span = document.querySelector(".modal .close");
 
-                    // Agregamos el div al listado 
-                    listadepelis.appendChild(div);
+                unapeli.onclick = function () {
+                modal.classList.add("active")
+             }
+
+                 span.onclick = function() {
+                 console.log("chau")
+                 modal.classList.remove("active")
+            }
 
                 }
 
@@ -121,40 +160,55 @@ const traigopeli = (categoria) => {
                     const listadepelis = document.getElementById("listadepelistop_rated");
                     const prom = fetch("https://api.themoviedb.org/3/movie/" + categoria + "?api_key=d970e377bc07fda41fabc4c1bc412609&page=" + vuelta);
                     prom.then(res => res.json())
-                        .then(movie => {
+                        .then(movie => {    
                             if (movie) {
-                                for (let i = 0; i < movie.results.length; i++) {
-                                    // Creamos un div, le añadimos el nombre y la imagen 
-                                    const div = document.createElement("div")
-                                    div.classList.add("movie")
+                            for (let i = 0; i < movie.results.length ; i++) {
+                                // Creamos un div, le añadimos el nombre y la imagen 
+                                const div = document.createElement("div")
+                                div.classList.add("movie")
+                
+                                const titulo = document.createElement("p")
+                                titulo.classList.add("titulo")
+                                titulo.textContent = movie.results[i].title
+                
+                                const imagen = document.createElement("img");
+                                imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
+                
+                                const boton = document.createElement("button");
+                
+                                div.appendChild(imagen)
+                                div.appendChild(titulo);
+                                
+                
+                                
+                                // Agrego el div al listado 
+                                listadepelis.appendChild(div);
 
-                                    const titulo = document.createElement("p")
-                                    titulo.classList.add("titulo")
-                                    titulo.textContent = movie.results[i].title
+                                // Activo modal
+                                const unapeli = div;
+                                const modal = document.getElementById("myModal");
+                                var span = document.querySelector(".modal .close");
 
-                                    const imagen = document.createElement("img");
-                                    imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
+                                unapeli.onclick = function () {
+                                modal.classList.add("active")
+                             }
 
-                                    const boton = document.createElement("button");
-
-                                    div.appendChild(imagen)
-                                    div.appendChild(titulo);
-
-
-
-                                    // Agregamos el div al listado 
-                                    listadepelis.appendChild(div);
+                                 span.onclick = function() {
+                                 console.log("chau")
+                                 modal.classList.remove("active")
+                            }
+ 
 
                                 }
-
+                
                             }
-                        })
-                }
+                })
+            }
 
             }
 
-
-        })
+            
+    })
 }
 // Cuando clickeo en cada categoría del costado
 
@@ -163,7 +217,7 @@ iconoPopular.onclick = function (event) {
     textoview.innerHTML = "X Results";
     textotop.innerHTML = "Popular Movies";
     traigopeli("popular");
-}
+}   
 
 viewPop.onclick = function (event) {
     textoview.innerHTML = "X Results";
@@ -175,7 +229,7 @@ iconoTop.onclick = function (event) {
     textoview.innerHTML = "X Results";
     textotop.innerHTML = "Top Rated Movies";
     traigopeli("top_rated");
-}
+}   
 
 viewTop.onclick = function (event) {
     textoview.innerHTML = "X Results";
@@ -187,7 +241,7 @@ iconoUp.onclick = function (event) {
     textoview.innerHTML = "X Results";
     textotop.innerHTML = "Upcoming Movies";
     traigopeli("upcoming");
-}
+}   
 
 viewUp.onclick = function (event) {
     textoview.innerHTML = "X Results";
@@ -199,7 +253,7 @@ iconoNow.onclick = function (event) {
     textoview.innerHTML = "X Results";
     textotop.innerHTML = "Now Playing Movies";
     traigopeli("now_playing");
-}
+}   
 
 viewNow.onclick = function (event) {
     textoview.innerHTML = "X Results";
@@ -219,7 +273,7 @@ buscador.addEventListener('keypress', function (event) {
   }
 })
 
-    // Función
+// Función
 
 const traigoPeliBuscador = () => {
     const divboton = document.querySelector("button");
@@ -233,25 +287,25 @@ const traigoPeliBuscador = () => {
     let vuelta = 1;
     const listadepelis = document.getElementById("listadepelistop_rated");
     const prom = fetch("https://api.themoviedb.org/3/search/movie?api_key=d970e377bc07fda41fabc4c1bc412609&query=" + elegida + "&page=" + vuelta);
-                n(res => res.json())
-                    vie => {    
-                    movie) {
-                    listadepelis.innerHTML = "";
+    prom.then(res => res.json())
+        .then(movie => {    
+            if (movie) {
+                listadepelis.innerHTML = "";
             for (let i = 0; i < movie.results.length ; i++) {
-                    // Creamos un div, le añadimos el nombre y la imagen 
-                    const div = document.createElement("div")
-                    div.classList.add("movie")
+                // Creamos un div, le añadimos el nombre y la imagen 
+                const div = document.createElement("div")
+                div.classList.add("movie")
 
-                    const titulo = document.createElement("p")
-                    titulo.classList.add("titulo")
+                const titulo = document.createElement("p")
+                titulo.classList.add("titulo")
                 titulo.textContent = movie.results[i].title
-                    
-                    const imagen = document.createElement("img");
-imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
 
-div.appendChild(imagen)
-                    div.appendChild(titulo);
-                    
+                const imagen = document.createElement("img");
+                imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
+
+                div.appendChild(imagen)
+                div.appendChild(titulo);
+                
 
                 
                 // Agregamos el div al listado 
@@ -262,34 +316,34 @@ div.appendChild(imagen)
                 // Si presiono el botón
 
                 divboton.onclick = function (event) {
-                    vuelta = (vuelta + 1
+                    vuelta = (vuelta + 1);
                     const listadepelis = document.getElementById("listadepelistop_rated");
-                                om = fetch("https://api.themoviedb.org/3/search/movie?api_key=d970e377bc07fda41fabc4c1bc412609&query=" + elegida + "&page=" + vuelta);
+                    const prom = fetch("https://api.themoviedb.org/3/search/movie?api_key=d970e377bc07fda41fabc4c1bc412609&query=" + elegida + "&page=" + vuelta);
                     prom.then(res => res.json())
                         .then(movie => {    
-            if (movie) {
+                            if (movie) {
                             for (let i = 0; i < movie.results.length ; i++) {
                                 // Creamos un div, le añadimos el nombre y la imagen 
                                 const div = document.createElement("div")
-                div.classList.add("movie")
+                                div.classList.add("movie")
                 
                                 const titulo = document.createElement("p")
-                titulo.classList.add("titulo")
+                                titulo.classList.add("titulo")
                                 titulo.textContent = movie.results[i].title
-
+                
                                 const imagen = document.createElement("img");
                                 imagen.setAttribute('src', "https://image.tmdb.org/t/p/w370_and_h556_bestv2" + movie.results[i].poster_path);
-
-                const boton = document.createElement("button");
-
+                
+                                const boton = document.createElement("button");
+                
                                 div.appendChild(imagen)
                                 div.appendChild(titulo);
+                                
                 
-                            
-                
-                            // Agregamos el div al listado 
+                                
+                                // Agregamos el div al listado 
                                 listadepelis.appendChild(div);
-    
+                
                                 }
                 
                             }
